@@ -16,8 +16,10 @@ function parseData() {
 			console.log(messagesDiv.innerHTML);
 		}
 	}
-	if (request.readystate == 4 && request.status != 200)
+	if (request.readystate == 4 && request.status != 200) {
 		alert("did not load");
+	}
+	console.log(request.readystate);
 }
 
 
