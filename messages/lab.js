@@ -13,6 +13,7 @@ function parseData() {
 		converted = JSON.parse(request.responseText);
 		for (i = 0; i < converted.length; i++) {
 			messagesDiv.innerHTML += converted[i]['content'];
+			console.log(messagesDiv.innerHTML);
 		}
 	}
 	if (request.readystate == 4 && request.status != 200)
