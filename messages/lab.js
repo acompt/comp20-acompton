@@ -11,7 +11,7 @@ function parse() {
 			messagesDiv = document.getElementById("messages");
 			converted = JSON.parse(request.responseText);
 			for (i = 0; i < converted.length; i++) {
-				messagesDiv.innerHTML += converted[i]['content'];
+				messagesDiv.innerHTML += <p> converted[i]['content'];
 				console.log(messagesDiv.innerHTML);
 			}
 		}
