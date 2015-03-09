@@ -6,7 +6,6 @@ function parse() {
 	request.send();
 
 	function parseData() {
-		console.log("in parse data")
 		if (request.readyState == 4 && request.status == 200) {
 			messagesDiv = document.getElementById("messages");
 			converted = JSON.parse(request.responseText);
@@ -18,7 +17,6 @@ function parse() {
 		if (request.readyState == 4 && request.status != 200) {
 			alert("did not load");
 		}
-		console.log(request.readyState);
 	}
 
 }
