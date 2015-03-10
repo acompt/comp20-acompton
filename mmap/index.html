@@ -31,10 +31,6 @@
 				console.log("Call before getMyLocation()");
 				getMyLocation();
 				console.log("Call after getMyLocation()");
-				console.log("myLat=" + myLat);
-				if ((myLat != 0) && (myLng != 0)) {
-					sendMyLocation();
-				}
 			}
 			
 			function getMyLocation() {
@@ -43,6 +39,7 @@
 					navigator.geolocation.getCurrentPosition(function(position) {
 						myLat = position.coords.latitude;
 						myLng = position.coords.longitude;
+						sendMyLocation();
 						renderMap();
 					});
 				}
