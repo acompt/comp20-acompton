@@ -58,6 +58,8 @@
 				//request.onreadystatechange = parseData;
 				request.send("login=" + login + "&lat=" + myLat + "&lng=" + myLng);
 				converted = JSON.parse(request.responseText);
+				console.log("sent location");
+				console.log(converted);
 			}
 
 			function renderMap()
