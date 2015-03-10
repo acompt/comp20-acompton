@@ -52,9 +52,9 @@
 			function sendMyLocation() 
 			{
 				request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-			//	request.open("post", , true);
-				//request.onreadystatechange = parseData;
+				request.open("post", "https://secret-about-box.herokuapp.com/sendLocation", true);
 				request.send("login=" + login + "&lat=" + myLat + "&lng=" + myLng);
+				
 				converted = JSON.parse(request.responseText);
 				console.log("sent location");
 				console.log(converted);
