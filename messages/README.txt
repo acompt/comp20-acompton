@@ -13,4 +13,5 @@ origin but the request will not succeed because of the same-origin policy
 which maintains that requests will succeed only if they are made to the host
 that served the original web page. This prevents cross-site request forgery 
 attacks. This also restricts you from accessing the data from your local
-machine as that would also be a security breach.
+machine as that would also be a security breach because your local machine
+is a different origin.
