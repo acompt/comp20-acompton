@@ -11,7 +11,6 @@ function parse() {
 			converted = JSON.parse(request.responseText);
 			for (i = 0; i < converted.length; i++) {
 				messagesDiv.innerHTML += "<p>" + converted[i]['content'];
-				console.log(messagesDiv.innerHTML);
 			}
 		}
 		if (request.readyState == 4 && request.status != 200) {
