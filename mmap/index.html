@@ -44,7 +44,7 @@
 					});
 				}
 				else {
-					alert("Geolocation is not supported by your web browser.  What a shame!");
+					alert("Geolocation is not supported by your web browser.");
 				}
 				console.log("Leaving getMyLocation()");
 			}
@@ -59,10 +59,10 @@
 
 				function parseData() {
 					if (request.readyState == 4 && request.status == 200) {
-						messagesDiv = document.getElementById("messages");
+						//messagesDiv = document.getElementById("messages");
 						converted = JSON.parse(request.responseText);
 						for (i = 0; i < converted.length; i++) {
-							messagesDiv.innerHTML += "<p>" + converted[i]['content'];
+							//messagesDiv.innerHTML += "<p>" + converted[i]['content'];
 						}
 						console.log(converted);
 					}
