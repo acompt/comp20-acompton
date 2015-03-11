@@ -7,7 +7,7 @@
 		<title>Marauder's Map</title>
 		<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
 		<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=true&amp;libraries=places"></script>
-		<!-- <link rel="stylesheet" href="geolocation_map_style.css" /> -->
+		<link rel="stylesheet" href="map.css" />
 		
 		<script>
 			var myLat = 0;
@@ -51,13 +51,26 @@
 
 			function sendMyLocation() 
 			{
+				console.log("In sendMyLocation()");
 				request.open("post", "https://secret-about-box.herokuapp.com/sendLocation", true);
 				request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+				request.onreadystatechange = parseData;
 				request.send("login=" + login + "&lat=" + myLat + "&lng=" + myLng);
 
-				converted = JSON.parse(request.responseText);
+				function parseData() {
+					if (request.readyState == 4 && request.status == 200) {
+						messagesDiv = document.getElementById("messages");
+						converted = JSON.parse(request.responseText);
+						for (i = 0; i < converted.length; i++) {
+							messagesDiv.innerHTML += "<p>" + converted[i]['content'];
+						}
+						console.log(converted);
+					}
+					if (request.readyState == 4 && request.status != 200) {
+						alert("did not load");
+					}
+				}
 				console.log("sent location");
-				console.log(converted);
 			}
 
 			function renderMap()
@@ -115,7 +128,7 @@
 					infowindow.setContent(place.name);
 					infowindow.open(map, this);
 				});
-      }
+      		}
 		</script>
 	</head>
 	
