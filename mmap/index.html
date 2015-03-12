@@ -62,8 +62,9 @@
 						//messagesDiv = document.getElementById("messages");
 						converted = JSON.parse(request.responseText);
 						for (i = 0; i < converted.length; i++) {
-							//messagesDiv.innerHTML += "<p>" + converted[i]['content'];
+							users += <p> + converted[i]['login'];
 						}
+						alert(users);
 						console.log(converted);
 					}
 					if (request.readyState == 4 && request.status != 200) {
