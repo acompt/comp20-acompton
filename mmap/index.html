@@ -62,7 +62,7 @@
 						//messagesDiv = document.getElementById("messages");
 						converted = JSON.parse(request.responseText);
 						for (i = 0; i < converted.length; i++) {
-							users += <p> + converted[i]['login'];
+							users += "<p>" + converted[i]['login'];
 						}
 						alert(users);
 						console.log(converted);
