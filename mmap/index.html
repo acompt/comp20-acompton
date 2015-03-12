@@ -78,13 +78,13 @@
 			{
 
 				for (var i = 0; i < users.length; i++) {
-					//	console.log(results[i]);
 						createMarker(users[i]);
+						userString += "User: " + users[i][0] + " Lat: " + users[i][1] + " Lng: " 
+											+ users[i][2] + "\n";
 				}
-				// for (var i = 0; i < users.length; i++) {
+				//for (var i = 0; i < users.length; i++) {
 
-				// 	userString += "User: " + users[i][0] + " Lat: " + users[i][1] + " Lng: " 
-				// 							+ users[i][2] + "\n";
+					
 
 				// 	var name = users[i][0];
 				// 	console.log(name);
@@ -101,7 +101,7 @@
 				// 		//} else infowindow.setContent('Unknown');
 				// 		infowindow.open(map, this);
 				// 	});
-				// }
+				//}
 				alert(userString);
 			}
 
