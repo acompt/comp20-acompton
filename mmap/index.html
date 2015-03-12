@@ -76,27 +76,32 @@
 
 			function addUsers()
 			{
-				for (var i = 0; i < users.length; i++) {
 
-					userString += "User: " + users[i][0] + " Lat: " + users[i][1] + " Lng: " 
-											+ users[i][2] + "\n";
-
-					var name = users[i][0];
-					console.log(name);
-					var myLatlng = new google.maps.LatLng(users[i][1], users[i][2]);
-					var marker = new google.maps.Marker({
-						map: map,
-						position: myLatlng
-					});
-
-					google.maps.event.addListener(marker, 'click', function() {
-						infowindow.close();
-						//if (users[i] != undefined) {
-							infowindow.setContent(name);
-						//} else infowindow.setContent('Unknown');
-						infowindow.open(map, this);
-					});
+				for (var i = 0; i < results.length; i++) {
+						console.log(results[i]);
+						createMarker(users[i]);
 				}
+				// for (var i = 0; i < users.length; i++) {
+
+				// 	userString += "User: " + users[i][0] + " Lat: " + users[i][1] + " Lng: " 
+				// 							+ users[i][2] + "\n";
+
+				// 	var name = users[i][0];
+				// 	console.log(name);
+				// 	var myLatlng = new google.maps.LatLng(users[i][1], users[i][2]);
+				// 	var marker = new google.maps.Marker({
+				// 		map: map,
+				// 		position: myLatlng
+				// 	});
+
+				// 	google.maps.event.addListener(marker, 'click', function() {
+				// 		infowindow.close();
+				// 		//if (users[i] != undefined) {
+				// 			infowindow.setContent(name);
+				// 		//} else infowindow.setContent('Unknown');
+				// 		infowindow.open(map, this);
+				// 	});
+				// }
 				alert(userString);
 			}
 
@@ -143,20 +148,26 @@
 			// 	}
 			// }
 			
-			// function createMarker(place)
-			// {
-			// 	var placeLoc = place.geometry.location;
-			// 	var marker = new google.maps.Marker({
-			// 		map: map,
-			// 		position: place.geometry.location
-			// 	});
+			function createMarker(user)
+			{
+				var myLatlng = new google.maps.LatLng(user[1], user[2]);
+				var marker = new google.maps.Marker({
+					map: map,
+					position: myLatlng
+				});
 
-			// 	google.maps.event.addListener(marker, 'click', function() {
-			// 		infowindow.close();
-			// 		infowindow.setContent(place.name);
-			// 		infowindow.open(map, this);
-			// 	});
-   //    		}
+				//var placeLoc = place.geometry.location;
+				// var marker = new google.maps.Marker({
+				// 	map: map,
+				// 	position: place.geometry.location
+				// });
+
+				google.maps.event.addListener(marker, 'click', function() {
+					infowindow.close();
+					infowindow.setContent(user[0]);
+					infowindow.open(map, this);
+				});
+      		}
 		</script>
 	</head>
 	
