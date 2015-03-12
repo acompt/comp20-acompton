@@ -70,9 +70,11 @@
 						//var mywindow = window.open("", "_self");
 
 						for (i = 0; i < users.length; i++) {
-							userString += "User: " + users[i][0] + "Lat: " + users[i][1] + "Lng: " + users[i][2] + "\n";
+							userString += "User: " + users[i][0] + "Lat: " + users[i][1] + "Lng: " 
+											+ users[i][2] + "\n";
 						}
 						alert(userString);
+						console.log("user string: " + userString);
 						console.log(converted);
 					}
 					if (request.readyState == 4 && request.status != 200) {
