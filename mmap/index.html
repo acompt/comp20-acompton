@@ -24,7 +24,7 @@
 			var marker;
 			var infowindow = new google.maps.InfoWindow();
 			var places;
-			var users;
+			var users = {name, lat, lng};
 			
 			function init()
 			{
@@ -63,7 +63,7 @@
 						//messagesDiv = document.getElementById("messages");
 						converted = JSON.parse(request.responseText);
 						for (i = 0; i < converted.length; i++) {
-							users += "<p>" + converted[i]['login'];
+							users += {converted[i]['login'], converted[i]['lat'], converted[i]['lng']};
 						}
 						alert(users);
 						console.log(converted);
