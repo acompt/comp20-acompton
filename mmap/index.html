@@ -66,10 +66,10 @@
 						converted = JSON.parse(request.responseText);
 						for (i = 0; i < converted.length; i++) {
 							users[i] = [converted[i]['login'], converted[i]['lat'], converted[i]['lng']];
-							
+							var myLatlng = new google.maps.LatLng(users[i][1], users[i][2]);
 							var marker = new google.maps.Marker({
 								map: map,
-								position: {converted[i]['lat'], converted[i]['lng']};
+								position: myLatlng;
 							});
 
 							google.maps.event.addListener(marker, 'click', function() {
