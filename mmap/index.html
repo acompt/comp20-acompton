@@ -66,7 +66,17 @@
 						converted = JSON.parse(request.responseText);
 						for (i = 0; i < converted.length; i++) {
 							users[i] = [converted[i]['login'], converted[i]['lat'], converted[i]['lng']];
-							createMarker(converted[i]);
+							
+							var marker = new google.maps.Marker({
+								map: map,
+								position: {converted[i]['lat'], converted[i]['lng']};
+							});
+
+							google.maps.event.addListener(marker, 'click', function() {
+								infowindow.close();
+								infowindow.setContent(converted[i]['login']);
+								infowindow.open(map, this);
+							});
 
 						}
 						//var mywindow = window.open("", "_self");
@@ -75,7 +85,7 @@
 							userString += "User: " + users[i][0] + " Lat: " + users[i][1] + " Lng: " 
 											+ users[i][2] + "\n";
 						}
-						alert("user string: " + userString);
+						alert(userString);
 					}
 					if (request.readyState == 4 && request.status != 200) {
 						alert("did not load");
@@ -105,42 +115,42 @@
 				});
 				
 				// Calling Google Places API
-				var request = {
-					location: me,
-					radius: '500',
-					types: ['food']
-				};
-				service = new google.maps.places.PlacesService(map);
-				service.search(request, callback);
+				// var request = {
+				// 	location: me,
+				// 	radius: '500',
+				// 	types: ['food']
+				// };
+				// service = new google.maps.places.PlacesService(map);
+				// service.search(request, callback);
 			}
 			
 			// Taken from http://code.google.com/apis/maps/documentation/javascript/places.html
-			function callback(results, status)
-			{
-				if (status == google.maps.places.PlacesServiceStatus.OK) {
-					alert("Got places back!");
-					places = results;
-					for (var i = 0; i < results.length; i++) {
-						console.log(results[i]);
-						createMarker(results[i]);
-					}
-				}
-			}
+			// function callback(results, status)
+			// {
+			// 	if (status == google.maps.places.PlacesServiceStatus.OK) {
+			// 		alert("Got places back!");
+			// 		places = results;
+			// 		for (var i = 0; i < results.length; i++) {
+			// 			console.log(results[i]);
+			// 			createMarker(results[i]);
+			// 		}
+			// 	}
+			// }
 			
-			function createMarker(place)
-			{
-				var placeLoc = place.geometry.location;
-				var marker = new google.maps.Marker({
-					map: map,
-					position: place.geometry.location
-				});
+			// function createMarker(place)
+			// {
+			// 	var placeLoc = place.geometry.location;
+			// 	var marker = new google.maps.Marker({
+			// 		map: map,
+			// 		position: place.geometry.location
+			// 	});
 
-				google.maps.event.addListener(marker, 'click', function() {
-					infowindow.close();
-					infowindow.setContent(place.name);
-					infowindow.open(map, this);
-				});
-      		}
+			// 	google.maps.event.addListener(marker, 'click', function() {
+			// 		infowindow.close();
+			// 		infowindow.setContent(place.name);
+			// 		infowindow.open(map, this);
+			// 	});
+   //    		}
 		</script>
 	</head>
 	
