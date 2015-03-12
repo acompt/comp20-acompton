@@ -89,9 +89,9 @@
 
 					google.maps.event.addListener(marker, 'click', function() {
 						infowindow.close();
-						if (users[i] != undefined) {
+						//if (users[i] != undefined) {
 							infowindow.setContent(users[i][0]);
-						} else infowindow.setContent('Unknown');
+						//} else infowindow.setContent('Unknown');
 						infowindow.open(map, this);
 					});
 				}
