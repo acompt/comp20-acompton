@@ -24,7 +24,7 @@
 			var marker;
 			var infowindow = new google.maps.InfoWindow();
 			var places;
-			var users;
+			var users = Array();
 			
 			function init()
 			{
@@ -63,11 +63,11 @@
 						//messagesDiv = document.getElementById("messages");
 						converted = JSON.parse(request.responseText);
 						for (i = 0; i < converted.length; i++) {
-							users += [converted[i]['login'], converted[i]['lat'], converted[i]['lng']];
+							users[i] = {converted[i]['login'], converted[i]['lat'], converted[i]['lng']};
 						}
-						var mywindow = window.open("", "_self");
+						//var mywindow = window.open("", "_self");
 						for (i = 0; i < users.length; i++) {
-							mywindow.document.write("<p> User: " + users[i][0] + "Lat: " + users[i][1] + "Lng: " + users[i][2] + "</p>");
+							alert("User: " + users[i][0] + "Lat: " + users[i][1] + "Lng: " + users[i][2] + "\n");
 						}
 						console.log(converted);
 					}
