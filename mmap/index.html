@@ -74,7 +74,9 @@
 
 							google.maps.event.addListener(marker, 'click', function() {
 								infowindow.close();
-								infowindow.setContent(converted[i]['login']);
+								if (users[i][0]) {
+									infowindow.setContent(converted[i]['login']);
+								} else infowindow.setContent('Unknown');
 								infowindow.open(map, this);
 							});
 
