@@ -81,6 +81,8 @@
 					userString += "User: " + users[i][0] + " Lat: " + users[i][1] + " Lng: " 
 											+ users[i][2] + "\n";
 
+					var name = users[i][0];
+					console.log(name);
 					var myLatlng = new google.maps.LatLng(users[i][1], users[i][2]);
 					var marker = new google.maps.Marker({
 						map: map,
@@ -90,7 +92,7 @@
 					google.maps.event.addListener(marker, 'click', function() {
 						infowindow.close();
 						//if (users[i] != undefined) {
-							infowindow.setContent(users[i][0]);
+							infowindow.setContent(name);
 						//} else infowindow.setContent('Unknown');
 						infowindow.open(map, this);
 					});
