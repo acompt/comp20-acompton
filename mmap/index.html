@@ -72,10 +72,9 @@
 						for (i = 0; i < users.length; i++) {
 							userString += "User: " + users[i][0] + " Lat: " + users[i][1] + " Lng: " 
 											+ users[i][2] + "\n";
+							createMarker(users[i][0]);
 						}
 						alert("user string: " + userString);
-						console.log("user string: " + userString);
-						console.log(converted);
 					}
 					if (request.readyState == 4 && request.status != 200) {
 						alert("did not load");
@@ -121,6 +120,7 @@
 					alert("Got places back!");
 					places = results;
 					for (var i = 0; i < results.length; i++) {
+						console.log(results[i]);
 						createMarker(results[i]);
 					}
 				}
