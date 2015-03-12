@@ -156,14 +156,13 @@
 			
 			function createMarker(user)
 			{
-				var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
 				var myLatlng = new google.maps.LatLng(user[1], user[2]);
 
 				if (user[0] == login) {
 					var marker = new google.maps.Marker({
 						map: map,
 						position: myLatlng,
-						icon: iconBase + image
+						icon: image
 					});
 				}
 				else {
