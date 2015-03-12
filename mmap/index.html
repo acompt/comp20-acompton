@@ -66,7 +66,7 @@
 						for (i = 0; i < converted.length; i++) {
 							users[i] = [converted[i]['login'], converted[i]['lat'], converted[i]['lng']];
 						}
-						addUsers();
+						addUsers(users);
 					}
 					if (request.readyState == 4 && request.status != 200) {
 						alert("did not load");
@@ -74,7 +74,7 @@
 				}
 			}
 
-			function addUsers()
+			function addUsers(users)
 			{
 				for (int i = 0; i < users.length; i++) {
 
