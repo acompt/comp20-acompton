@@ -63,7 +63,7 @@
 						//messagesDiv = document.getElementById("messages");
 						converted = JSON.parse(request.responseText);
 						for (i = 0; i < converted.length; i++) {
-							users[i] = {converted[i]['login'], converted[i]['lat'], converted[i]['lng']};
+							users[i] = [converted[i]['login'], converted[i]['lat'], converted[i]['lng']];
 						}
 						//var mywindow = window.open("", "_self");
 						for (i = 0; i < users.length; i++) {
