@@ -26,6 +26,7 @@
 			var places;
 			var users = Array();
 			var userString = "";
+			var image = 'image.jpg'
 
 			
 			function init()
@@ -156,10 +157,20 @@
 			function createMarker(user)
 			{
 				var myLatlng = new google.maps.LatLng(user[1], user[2]);
-				var marker = new google.maps.Marker({
-					map: map,
-					position: myLatlng
-				});
+
+				if (user[0] == login) {
+					var marker = new google.maps.Marker({
+						map: map,
+						position: myLatlng,
+						icon: iconBase + image
+					});
+				}
+				else {
+					var marker = new google.maps.Marker({
+						map: map,
+						position: myLatlng
+					});
+				}
 
 				//var placeLoc = place.geometry.location;
 				// var marker = new google.maps.Marker({
