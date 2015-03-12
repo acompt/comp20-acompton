@@ -62,38 +62,40 @@
 
 				function parseData() {
 					if (request.readyState == 4 && request.status == 200) {
-						//messagesDiv = document.getElementById("messages");
 						converted = JSON.parse(request.responseText);
 						for (i = 0; i < converted.length; i++) {
 							users[i] = [converted[i]['login'], converted[i]['lat'], converted[i]['lng']];
-							var myLatlng = new google.maps.LatLng(users[i][1], users[i][2]);
-							var marker = new google.maps.Marker({
-								map: map,
-								position: myLatlng
-							});
-
-							google.maps.event.addListener(marker, 'click', function() {
-								infowindow.close();
-								if (users[i] != undefined) {
-									infowindow.setContent(converted[i]['login']);
-								} else infowindow.setContent('Unknown');
-								infowindow.open(map, this);
-							});
-
 						}
-						//var mywindow = window.open("", "_self");
-
-						for (i = 0; i < users.length; i++) {
-							userString += "User: " + users[i][0] + " Lat: " + users[i][1] + " Lng: " 
-											+ users[i][2] + "\n";
-						}
-						alert(userString);
+						addUsers();
 					}
 					if (request.readyState == 4 && request.status != 200) {
 						alert("did not load");
 					}
 				}
-				console.log("sent location");
+			}
+
+			function addUsers()
+			{
+				for (int i = 0; i < users.length; i++) {
+
+					userString += "User: " + users[i][0] + " Lat: " + users[i][1] + " Lng: " 
+											+ users[i][2] + "\n";
+
+					var myLatlng = new google.maps.LatLng(users[i][1], users[i][2]);
+					var marker = new google.maps.Marker({
+						map: map,
+						position: myLatlng
+					});
+
+					google.maps.event.addListener(marker, 'click', function() {
+						infowindow.close();
+						if (users[i] != undefined) {
+							infowindow.setContent(users[i][0]);
+						} else infowindow.setContent('Unknown');
+						infowindow.open(map, this);
+					});
+				}
+				alert(userString);
 			}
 
 			function renderMap()
