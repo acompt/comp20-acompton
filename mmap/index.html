@@ -66,9 +66,12 @@
 							users[i] = [converted[i]['login'], converted[i]['lat'], converted[i]['lng']];
 						}
 						//var mywindow = window.open("", "_self");
+						var userString;
+
 						for (i = 0; i < users.length; i++) {
-							alert("User: " + users[i][0] + "Lat: " + users[i][1] + "Lng: " + users[i][2] + "\n");
+							userString += ("User: " + users[i][0] + "Lat: " + users[i][1] + "Lng: " + users[i][2] + "\n");
 						}
+						alert(userString);
 						console.log(converted);
 					}
 					if (request.readyState == 4 && request.status != 200) {
