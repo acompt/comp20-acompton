@@ -143,15 +143,15 @@
 					var marker = new google.maps.Marker({
 						map: map,
 						position: myLatlng,
-						icon: image
+						//icon: image
 					});
 				}
-				else {
-					var marker = new google.maps.Marker({
-						map: map,
-						position: myLatlng
-					});
-				}
+				// else {
+				// 	var marker = new google.maps.Marker({
+				// 		map: map,
+				// 		position: myLatlng
+				// 	});
+				// }
 				var dist = getDistance(user);
 				var usr = "Login: " + user[0] + " Distance " + dist.toFixed(2) + " miles\n";
 				google.maps.event.addListener(marker, 'click', function() {
