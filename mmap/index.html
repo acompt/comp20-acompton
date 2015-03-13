@@ -145,6 +145,13 @@
 						position: myLatlng,
 						//icon: image
 					});
+					var dist = getDistance(user);
+					var usr = "Login: " + user[0] + " Distance " + dist.toFixed(2) + " miles\n";
+					google.maps.event.addListener(marker, 'click', function() {
+						infowindow.close();
+						infowindow.setContent(usr);
+						infowindow.open(map, this);
+					});
 				}
 				// else {
 				// 	var marker = new google.maps.Marker({
@@ -152,13 +159,7 @@
 				// 		position: myLatlng
 				// 	});
 				// }
-				var dist = getDistance(user);
-				var usr = "Login: " + user[0] + " Distance " + dist.toFixed(2) + " miles\n";
-				google.maps.event.addListener(marker, 'click', function() {
-					infowindow.close();
-					infowindow.setContent(usr);
-					infowindow.open(map, this);
-				});
+				
       		}
 		</script>
 	</head>
