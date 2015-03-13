@@ -40,7 +40,7 @@
 					navigator.geolocation.getCurrentPosition(function(position) {
 						myLat = position.coords.latitude;
 						myLng = position.coords.longitude;
-						alert("My Location: " + myLat + " " + myLng);
+						alert("My Location: " + myLat.toFixed(2) + " " + myLng.toFixed(2));
 						sendMyLocation();
 						renderMap();
 					});
@@ -117,7 +117,7 @@
 				// Create a marker
 				marker = new google.maps.Marker({
 					position: me,
-					title: "Here I Am!"
+					title: "Logged In"
 				});
 				marker.setMap(map);
 					
@@ -146,8 +146,8 @@
 						position: myLatlng
 					});
 				}
-				var dist = getDistance(users[i]);
-				var usr = "Login: " + users[i][0] + " Distance " + dist.toFixed(2) + " miles\n";
+				var dist = getDistance(user);
+				var usr = "Login: " + user[0] + " Distance " + dist.toFixed(2) + " miles\n";
 				google.maps.event.addListener(marker, 'click', function() {
 					infowindow.close();
 					infowindow.setContent(usr);
