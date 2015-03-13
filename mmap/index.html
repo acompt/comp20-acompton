@@ -117,15 +117,16 @@
 				// Create a marker
 				marker = new google.maps.Marker({
 					position: me,
-					title: "Logged In"
+					title: "Logged In",
+					icon: image
 				});
 				marker.setMap(map);
 					
 				// Open info window on click of marker
-				google.maps.event.addListener(marker, 'click', function() {
+				//google.maps.event.addListener(marker, 'click', function() {
 					infowindow.setContent(marker.title);
 					infowindow.open(map, marker);
-				});
+				//});
 				
 			}
 
@@ -134,11 +135,11 @@
 				var myLatlng = new google.maps.LatLng(user[1], user[2]);
 
 				if (user[0] == login) {
-					var marker = new google.maps.Marker({
-						map: map,
-						position: myLatlng,
-						icon: image
-					});
+					// var marker = new google.maps.Marker({
+					// 	map: map,
+					// 	position: myLatlng,
+					// 	icon: image
+					// });
 				}
 				else {
 					var marker = new google.maps.Marker({
