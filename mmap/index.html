@@ -146,10 +146,11 @@
 						position: myLatlng
 					});
 				}
-
+				var dist = getDistance(users[i]);
+				var usr = "Login: " + users[i][0] + " Distance " + dist.toFixed(2) + " miles\n";
 				google.maps.event.addListener(marker, 'click', function() {
 					infowindow.close();
-					infowindow.setContent(user[0]);
+					infowindow.setContent(usr);
 					infowindow.open(map, this);
 				});
       		}
