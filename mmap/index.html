@@ -73,7 +73,6 @@
 
 			function addUsers()
 			{
-				console.log("in add users");
 
 				for (var i = 0; i < users.length; i++) {
 						createMarker(users[i]);
@@ -123,11 +122,8 @@
 				});
 				marker.setMap(map);
 					
-				// Open info window on click of marker
-				//google.maps.event.addListener(marker, 'click', function() {
-					infowindow.setContent(marker.title);
-					infowindow.open(map, marker);
-				//});
+				infowindow.setContent(marker.title);
+				infowindow.open(map, marker);
 				
 			}
 
@@ -136,14 +132,9 @@
 				var myLatlng = new google.maps.LatLng(user[1], user[2]);
 
 				if (user[0] != login) {
-					// var marker = new google.maps.Marker({
-					// 	map: map,
-					// 	position: myLatlng
-					// });
 					var marker = new google.maps.Marker({
 						map: map,
-						position: myLatlng,
-						//icon: image
+						position: myLatlng
 					});
 					var dist = getDistance(user);
 					var usr = "Login: " + user[0] + " Distance " + dist.toFixed(2) + " miles\n";
@@ -153,13 +144,6 @@
 						infowindow.open(map, this);
 					});
 				}
-				// else {
-				// 	var marker = new google.maps.Marker({
-				// 		map: map,
-				// 		position: myLatlng
-				// 	});
-				// }
-				
       		}
 		</script>
 	</head>
