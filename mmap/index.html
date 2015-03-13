@@ -32,13 +32,10 @@
 			function init()
 			{
 				map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
-				console.log("Call before getMyLocation()");
 				getMyLocation();
-				console.log("Call after getMyLocation()");
 			}
 			
 			function getMyLocation() {
-				console.log("In getMyLocation()");
 				if (navigator.geolocation) { // the navigator.geolocation object is supported on your browser
 					navigator.geolocation.getCurrentPosition(function(position) {
 						myLat = position.coords.latitude;
@@ -51,12 +48,10 @@
 				else {
 					alert("Geolocation is not supported by your web browser.");
 				}
-				console.log("Leaving getMyLocation()");
 			}
 
 			function sendMyLocation() 
 			{
-				console.log("In sendMyLocation()");
 				request.open("post", "https://secret-about-box.herokuapp.com/sendLocation", true);
 				request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 				request.onreadystatechange = parseData;
@@ -132,29 +127,8 @@
 					infowindow.open(map, marker);
 				});
 				
-				// Calling Google Places API
-				// var request = {
-				// 	location: me,
-				// 	radius: '500',
-				// 	types: ['food']
-				// };
-				// service = new google.maps.places.PlacesService(map);
-				// service.search(request, callback);
 			}
-			
-			// Taken from http://code.google.com/apis/maps/documentation/javascript/places.html
-			// function callback(results, status)
-			// {
-			// 	if (status == google.maps.places.PlacesServiceStatus.OK) {
-			// 		alert("Got places back!");
-			// 		places = results;
-			// 		for (var i = 0; i < results.length; i++) {
-			// 			console.log(results[i]);
-			// 			createMarker(results[i]);
-			// 		}
-			// 	}
-			// }
-			
+
 			function createMarker(user)
 			{
 				var myLatlng = new google.maps.LatLng(user[1], user[2]);
@@ -172,12 +146,6 @@
 						position: myLatlng
 					});
 				}
-
-				//var placeLoc = place.geometry.location;
-				// var marker = new google.maps.Marker({
-				// 	map: map,
-				// 	position: place.geometry.location
-				// });
 
 				google.maps.event.addListener(marker, 'click', function() {
 					infowindow.close();
