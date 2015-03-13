@@ -73,13 +73,9 @@
 
 			function addUsers()
 			{
-
 				for (var i = 0; i < users.length; i++) {
 						createMarker(users[i]);
-						var dist = getDistance(users[i]);
-						userString += "Login: " + users[i][0] + " Distance " + dist.toFixed(2) + "\n";
 				}
-				alert(userString);
 			}
 
 			function getDistance(user)
