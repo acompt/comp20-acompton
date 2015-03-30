@@ -6,13 +6,25 @@
 	<title>Captain's Log</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 	<script>
-		$(document).ready(function() {
-			$('h3').click($("#log").prepend(Date.now()));
-		})
+		$(document).keypress(function(e) {
+			if(e.which == 13) {
+				d = new Date();
+				toStore = $("#msg").val();
+				localStorage.setItem(d.toString(), toStore);
+				$("#log").prepend("<p>" + d.toString() + " - " + toStore + "</p>");
+				$("#msg").val('');
+			}
+		});
+
+		function getLocal() {
+			for(key in localStorage) {
+				$("#log").prepend("<p>" + key + " - " + localStorage[key] + "</p>");
+			}
+		}
 	</script>
 </head>
 
-<body>
+<body onload = "getLocal()">
 	<h1>Captain's Log</h1>
 	<h3>New entry: <input type="text" id="msg" name="msg" size="30" /></h3>
 	<div id="log"></div>
