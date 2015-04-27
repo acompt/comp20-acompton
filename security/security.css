@@ -1,0 +1,28 @@
+body {
+	text-align: left;
+	font-size: 13px;
+	font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+	padding-left: 10%;
+	padding-right: 20%;
+}
+
+h1 {
+	text-align: center;
+	font-size: 30px;
+}
+
+ul li{
+	text-align: left;
+	list-style-position: inside;
+}
+
+.header {
+	font-size: 15px;
+	font-style: italic;
+	font-weight: bold;
+}
+
+.issue {
+	font-size: 14px;
+	font-weight: bold;
+}

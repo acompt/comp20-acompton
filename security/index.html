@@ -1,0 +1,55 @@
+<!doctype html>
+
+<html>
+<head>
+	<title>Security Assessment</title>
+	<meta charset="utf-8" />
+	<link rel="stylesheet" href="security.css" />
+</head>
+
+<body>
+	<h1>Security Assessment</h1>
+	<div>Vulnerabilities of Ming Chow's Server-side Web Application by Andrea Compton</div>
+	<p class="header">1. Introduction</p>
+	<p>For this assessment I was hired to analyze the security of Ming Chow's server-side web application. The application uses Node.js with the Express web framework, and MongoDB which maintains 'location check-ins' including login, latitude, and longitude, for a long period of time. The application consists of three parts: 
+		<ul> 
+			<li>A homepage listing names and thier respective check in time, latitude, and longitude sorted in descending order by timestamp.</li> 
+			<li>A GET /location.json API that returns a JSON string of the last known location for a specified login.</li> 
+			<li>A POST /sendLocation API that submits check-ins from any domain. Mandatory fields included login, lat, lng and successful submission of the three pieces of data results in one entry into the database and a list of all records in the database. If something is missing, an error occurs.</li>
+		</ul>
+	</p>
+
+	<p class="header">2. Methodology</p>
+	<p>In order to test the security of the application I first looked at the code. From there I could tell there were security vulnerabilities which I then exploited using curl and simple MongoDB queries.</p>
+
+	<p class="header">3. Abstract of Findings</p>
+	<p>There were three security and privacy issues identified. The most severe is that the application is vulnerable to attacks that could bring down the site, create unnecessary alerts and redirections. There is also no sense of privacy as anyone can gain access to all the records in the database as well as searching and retrieving information of logins that are not thier own.</p>
+
+	<p class="header">4. Issues Found</p>
+	<p>There were three issues found with Ming Chow's server-side web application.</p>
+		<ul>
+			<p class="issue">Issue 1: Cross Site Scripting</p>
+			<li>Location: Home page</li>
+			<li>Severity: High. Any script can be inserted into the database via the login field and executed when the home page is loaded.</li>
+			<li>Description: Injected a script using curl. <img src="issue1.png" alt="Issue 1 curl attack" /></li>
+			<li>Proof of Vulnerability:<img src="Issue1proof.png" alt="Proof of hacked alert" /></li>
+			<li>Resolution: In order to respove this issue, user input must be sanitized. This includes excoding special characters so script tags are not executed. For example change &lt; to &amp;lt and change &gt; to &amp;gt.</li>
+
+			<p class="issue">Issue 2: MongoDB Request Injection Attack</p>
+			<li>Location: location.json</li>
+			<li>Severity: High. Anyone can see all of the entries in the databse.</li>
+			<li>Description: Found by searching for anything that was not equal to my login. While only one entry is returned at a time, by changing what the login does not equal, all entries can be found.</li>
+			<li>Proof of Vulnerability:<img src="issue2.png" alt="second issue" /></li>
+			<li>Resolution: In order to resolve this issue, user input again must be sanitized. This means cheching the input and making sure it only includes =login and not [$ne]=login.</li>
+
+			<p class="issue">Issue 3: Authentication</p>
+			<li>Location: location.json</li>
+			<li>Severity: Medium. Anyone can access a record in the database, even if it is not their own.</li>
+			<li>Description: Attackers can randomly try logins until one is correct and they can then access all of that users information.</li>
+			<li>Proof of Vulnerability: There is no authentication system or cookie storage to remember each user and only allow them to see their records.</li>
+			<li>Resolution: Create an authentication system using an API or cookies.</li>
+		</ul>
+
+	<p class="header">5. Conclusion</p>
+	<p>There were three security vulnerabilities found with Ming Chow's server-side web application. They were listed according to thier severity, with cross site scripting being the most severe. Before this application is put into production I would highly recommend sanitizing all user input to mitigate any cross site scripting attacks. It will be more expensive in the future to try and resolve these issues than it will be to fix them now. The other vulnerabilities are less severe, unless sensitive information is being stored. In that case I would highly recommend providing an authentication system which will be costly upfront but may save time and keep clients in the long run.</p>
+</body>
